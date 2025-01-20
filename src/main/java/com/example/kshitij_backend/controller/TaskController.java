@@ -77,4 +77,26 @@ public class TaskController {
 
         return new ResponseEntity<>(response, HttpStatus.NOT_MODIFIED);
     }
+
+    @ValidateJwtToken
+    @PostMapping("/pendingTask/{id}")
+    public ResponseEntity<?> pendingTask(@PathVariable("id") String id, HttpServletRequest request) {
+        String jwt = request.getHeader("X-Authorization");
+        String uid = JwtUtil.getUserIdByToken(jwt);
+        String response = taskService.pendingTask(id,uid);
+        if(response.equals(CommonMessage.SUCCESS))
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        else if(response.equals(CommonMessage.NOT_FOUND))
+            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+
+        return new ResponseEntity<>(response, HttpStatus.NOT_MODIFIED);
+    }
+
+    @ValidateJwtToken
+    @GetMapping("/counts")
+    public Map<String, Object> getTaskCounts(HttpServletRequest request) {
+        String jwt = request.getHeader("X-Authorization");
+        String uid = JwtUtil.getUserIdByToken(jwt);
+        return taskService.getTaskCounts(uid);
+    }
 }

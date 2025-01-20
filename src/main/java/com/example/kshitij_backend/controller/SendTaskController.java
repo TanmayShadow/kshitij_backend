@@ -30,12 +30,14 @@ public class SendTaskController {
     }
 
     // API to get all tasks shared by a specific sender
+    @ValidateJwtToken
     @GetMapping("/by-sender/{senderId}")
     public ResponseEntity<List<SendTaskModel>> getSharedTasksBySender(@PathVariable String senderId) {
         return ResponseEntity.ok(senderService.getSharedTasksBySender(senderId));
     }
 
     // API to get all tasks shared with a specific recipient
+    @ValidateJwtToken
     @GetMapping("/for-recipient/{recipientId}")
     public ResponseEntity<List<SendTaskModel>> getSharedTasksForRecipient(@PathVariable String recipientId) {
         return ResponseEntity.ok(senderService.getSharedTasksForRecipient(recipientId));

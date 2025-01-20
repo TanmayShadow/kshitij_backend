@@ -3,11 +3,13 @@ package com.example.kshitij_backend.service;
 import com.example.kshitij_backend.model.SendTaskModel;
 import com.example.kshitij_backend.repository.SendTaskRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+@Service
 public class SendTaskService {
     @Autowired
     private SendTaskRepo senderRepo;

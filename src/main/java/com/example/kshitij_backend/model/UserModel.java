@@ -12,11 +12,10 @@ public class UserModel
 {
     @Id
     private String id;
-    @NonNull// MongoDB document ID
     private String name;        // User's name
-    @NonNull
+
     private String email;       // User's email
-    @NonNull
+
     private String password;    // User's password
 
     public UserModel() {
