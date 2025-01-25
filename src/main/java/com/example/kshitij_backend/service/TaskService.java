@@ -19,6 +19,9 @@ public class TaskService {
     public String addTaskOfUser(TaskModel taskModel){
         try {
 //            taskModel.setDueDate(new Date());
+            Date dueDate = taskModel.getDueDate();
+            if(dueDate.before(new Date()))
+                taskModel.setStatus("Pending");
             TaskModel task = taskRepo.save(taskModel);
             task.setStatus("NEW");
             return CommonMessage.SUCCESS;

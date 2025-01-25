@@ -1,5 +1,6 @@
 package com.example.kshitij_backend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -14,8 +15,9 @@ public class UserModel
     private String id;
     private String name;        // User's name
 
+    @JsonIgnore        
     private String email;       // User's email
-
+    @JsonIgnore
     private String password;    // User's password
 
     public UserModel() {
